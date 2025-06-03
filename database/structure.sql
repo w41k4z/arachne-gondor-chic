@@ -9,7 +9,7 @@ CREATE TABLE categories (
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     username VARCHAR(20) NOT NULL UNIQUE,
-    password VARCHAR(20) NOT NULL
+    password VARCHAR(250) NOT NULL
 );
 
 CREATE TABLE products (

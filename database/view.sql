@@ -1,13 +1,14 @@
 CREATE VIEW v_product_stock_quantities AS
 SELECT
-    p.id AS product_id,
-    COALESCE(SUM(sm.quantity_in) - SUM(sm.quantity_out), 0) AS quantity
+    sm.product_id,
+    SUM(sm.quantity_in) - SUM(sm.quantity_out) AS quantity
 FROM
-    products p
-LEFT JOIN
-    stock_movements sm ON sm.product_id = p.id
+    stock_movements sm
+INNER JOIN
+    products p ON sm.product_id = p.id
 GROUP BY
-    p.id;
+    sm.product_id;
+
 
 CREATE VIEW v_latest_product_prices AS
 SELECT
