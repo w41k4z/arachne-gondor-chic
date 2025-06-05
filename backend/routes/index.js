@@ -1,6 +1,7 @@
-const routes = (app)=>{
-    // Import and use your routes here
-    require("./auth/AuthRoutes")(app);
-    require("./product/ProductRoutes")(app);
-}
+const routes = (app) => {
+  // Import and use your routes here
+  require("./auth/AuthRoutes")(app);
+  require("./product/ProductRoutes")(app)
+  // app.use("/api/products", require("./product/ProductRoutes"));
+};
 module.exports = routes;

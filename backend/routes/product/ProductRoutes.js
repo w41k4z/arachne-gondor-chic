@@ -1,15 +1,11 @@
+const express = require("express");
+const router = express.Router();
+const { getDailyProducts } = require('../../controllers/product/ProductController');
+require("dotenv").config();
+
+router.get("/daily-products" , getDailyProducts)
 
 module.exports = function (app) {
-    const router = require("express").Router();
-    dotenv = require('dotenv').config();
-    
-    // var userController=require('../../controllers/auth/UserController');
-
-
-    // router.post("/register",userController.register);
-    // router.post("/login",userController.login);
-    // router.post("/logout",userController.logout);
-
-    app.use("/api/"+(process.env.API_VERSION || 'v1'), router);
-
+  const apiVersion = process.env.API_VERSION || "v1";
+  app.use(`/api/${apiVersion}`, router);
 };
