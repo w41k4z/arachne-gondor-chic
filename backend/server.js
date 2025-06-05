@@ -2,14 +2,6 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 
-const sequelize = require('./config/db');
-const models = require('./models/relation/Model');
-
-sequelize.sync({ alter: true })
-  .then(() => console.log("Modèles synchronisés avec la base"))
-  .catch(err => console.error("Erreur sync :", err));
-
-
 const app = express();
 const PORT = process.env.PORT || 5000;
 
