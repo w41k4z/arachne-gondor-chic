@@ -1,4 +1,4 @@
-CREATE VIEW v_product_stock_quantities AS
+CREATE OR REPLACE VIEW v_product_stock_quantities AS
 SELECT
     sm.product_id,
     SUM(sm.quantity_in) - SUM(sm.quantity_out) AS quantity
@@ -10,7 +10,7 @@ GROUP BY
     sm.product_id;
 
 
-CREATE VIEW v_latest_product_prices AS
+CREATE OR REPLACE VIEW v_latest_product_prices AS
 SELECT
     pp.product_id,
     pp.price
@@ -26,7 +26,7 @@ INNER JOIN (
         product_id
 ) latest ON latest.product_id = pp.product_id AND latest.latest_date = pp.date;
 
-CREATE VIEW v_all_products AS
+CREATE OR REPLACE VIEW v_all_products AS
 SELECT
     p.*,
     COALESCE(lp.price, 0) AS price,
