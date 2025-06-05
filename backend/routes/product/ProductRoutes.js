@@ -1,15 +1,6 @@
+const router = require("express").Router();
+const productController = require('../../controllers/product/ProductController')
 
-module.exports = function (app) {
-    const router = require("express").Router();
-    dotenv = require('dotenv').config();
-    
-    // var userController=require('../../controllers/auth/UserController');
+router.get('/daily-products' , productController.getDailyProducts)
 
-
-    // router.post("/register",userController.register);
-    // router.post("/login",userController.login);
-    // router.post("/logout",userController.logout);
-
-    app.use("/api/"+(process.env.API_VERSION || 'v1'), router);
-
-};
+module.exports = router
