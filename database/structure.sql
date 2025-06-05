@@ -6,15 +6,9 @@ CREATE TABLE categories (
     label VARCHAR(255) NOT NULL UNIQUE
 );
 
-CREATE TABLE roles(
-    id SERIAL PRIMARY KEY,
-    label VARCHAR(255) NOT NULL UNIQUE
-);
-
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     username VARCHAR(40) NOT NULL UNIQUE,
-    role_id INTEGER NOT NULL REFERENCES roles(id),
     password VARCHAR(255) NOT NULL
 );
 
@@ -28,16 +22,20 @@ CREATE TABLE products (
 
 CREATE TABLE daily_products (
     id SERIAL PRIMARY KEY,
-    date DATE NOT NULL UNIQUE,
+    date DATE NOT NULL,
     product_id INTEGER NOT NULL REFERENCES products(id) ON DELETE CASCADE
 );
-
+ALTER TABLE daily_products
+ADD CONSTRAINT unique_daily_product UNIQUE (date, product_id);
 CREATE TABLE product_prices (
     id SERIAL PRIMARY KEY,
-    date DATE NOT NULL UNIQUE,
+    date DATE NOT NULL,
     product_id INTEGER NOT NULL REFERENCES products(id) ON DELETE CASCADE,
     price NUMERIC NOT NULL CHECK (price > 0)
 );
+ALTER TABLE product_prices
+ADD CONSTRAINT product_prices_unique_date_product UNIQUE (date, product_id);
+
 
 CREATE TABLE stock_movements (
     id SERIAL PRIMARY KEY,
@@ -47,5 +45,5 @@ CREATE TABLE stock_movements (
     quantity_in NUMERIC NOT NULL CHECK (quantity_in >= 0),
     quantity_out NUMERIC NOT NULL CHECK (quantity_out >= 0)
 );
-
-    CHECK (quantity_in > 0 OR quantity_out > 0)
+ALTER TABLE stock_movements
+ADD CONSTRAINT unique_movement UNIQUE(product_id, date, description);
