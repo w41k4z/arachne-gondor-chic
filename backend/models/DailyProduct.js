@@ -11,13 +11,13 @@ const DailyProduct = sequelize.define('DailyProduct', {
     type: DataTypes.DATEONLY,
     allowNull: false
   },
-  productId: {
+  product_id: {
     type: DataTypes.INTEGER,
     allowNull: false
   }
 }, {
   tableName: 'daily_products',
-  timestamps: true
+  timestamps: false
 });
 
 module.exports = DailyProduct;

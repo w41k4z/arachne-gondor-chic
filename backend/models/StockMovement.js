@@ -7,7 +7,7 @@ const StockMovement = sequelize.define('StockMovement', {
     primaryKey: true,
     autoIncrement: true
   },
-  productId: {
+  product_id: {
     type: DataTypes.INTEGER,
     allowNull: false
   },
@@ -18,17 +18,17 @@ const StockMovement = sequelize.define('StockMovement', {
   description: {
     type: DataTypes.STRING
   },
-  quantityIn: {
+  quantity_in: {
     type: DataTypes.INTEGER,
     defaultValue: 0
   },
-  quantityOut: {
+  quantity_out: {
     type: DataTypes.INTEGER,
     defaultValue: 0
   }
 }, {
   tableName: 'stock_movements',
-  timestamps: true
+  timestamps: false
 });
 
 module.exports = StockMovement;

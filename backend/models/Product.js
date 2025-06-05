@@ -7,7 +7,7 @@ const Product = sequelize.define('Product', {
     primaryKey: true,
     autoIncrement: true
   },
-  categoryId: {
+  category_id: {
     type: DataTypes.INTEGER,
     allowNull: false
   },
@@ -19,12 +19,12 @@ const Product = sequelize.define('Product', {
     type: DataTypes.STRING,
     allowNull: false
   },
-  imageUrl: {
+  image_url: {
     type: DataTypes.STRING
   }
 }, {
   tableName: 'products',
-  timestamps: true
+  timestamps: false
 });
 
 module.exports = Product;
