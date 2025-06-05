@@ -23,6 +23,6 @@ To run the project locally, follow these steps:
 
 4. Save the `.env` file. 💾
 
-5. Start the project by running the appropriate command `node server`. ▶️
+5. Start the project by running the appropriate command `npm run dev`. ▶️
 
 This will launch the project on `localhost` with the specified configurations. 🌐
