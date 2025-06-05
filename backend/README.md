@@ -1,4 +1,4 @@
-﻿# 🚀 Project Setup
+# 🚀 Project Setup
 
 To run the project locally, follow these steps:
 
@@ -14,3 +14,8 @@ To run the project locally, follow these steps:
    `npm run db:seed` to Insert default data. , `npm run db:cleardata` to clear all data
 
 6. Start the project by running the appropriate command `npm run dev`. ▶️
+
+7. Endpoint: http://localhost:5000/api/products/daily-products  
+    You can test it on Postman.
+   Note: For now, this API returns an array of products for the current day.  
+   This is because Mme may request, at any time, to display all products of the day — not just a single one.
