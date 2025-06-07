@@ -35,11 +35,11 @@ async function getDailyProducts() {
     const stockMovements = product.StockMovements || [];
 
     const totalIn = stockMovements.reduce(
-      (sum, m) => sum + (m.quantityIn || 0),
+      (sum, m) => sum + (m.quantity_in || 0),
       0
     );
     const totalOut = stockMovements.reduce(
-      (sum, m) => sum + (m.quantityOut || 0),
+      (sum, m) => sum + (m.quantity_out || 0),
       0
     );
     const stockRestant = totalIn - totalOut;

@@ -7,13 +7,13 @@ const Category = sequelize.define('Category', {
     primaryKey: true,
     autoIncrement: true
   },
-  name: {
+  label: {
     type: DataTypes.STRING,
     allowNull: false
   }
 }, {
   tableName: 'categories',
-  timestamps: true
+  timestamps: false
 });
 
 module.exports = Category;

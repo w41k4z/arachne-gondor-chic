@@ -7,7 +7,7 @@ const ProductPrice = sequelize.define('ProductPrice', {
     primaryKey: true,
     autoIncrement: true
   },
-  productId: {
+  product_id: {
     type: DataTypes.INTEGER,
     allowNull: false
   },
@@ -21,7 +21,7 @@ const ProductPrice = sequelize.define('ProductPrice', {
   }
 }, {
   tableName: 'product_prices',
-  timestamps: true
+  timestamps: false
 });
 
 module.exports = ProductPrice;

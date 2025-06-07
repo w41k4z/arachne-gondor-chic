@@ -16,7 +16,7 @@ async function getDailyProducts(req, res) {
       error: {},
     });
   } catch (error) {
-    return res.status(500).json({ error: "Internal Error" });
+    res.status(500).json({ message: "Internal Error", error: error.message });
   }
 }
 
