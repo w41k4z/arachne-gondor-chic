@@ -10,13 +10,13 @@ async function getDailyProducts(req, res) {
         error: {},
       });
     }
-    res.json({
+    return res.json({
       message: "",
       payload: products,
       error: {},
     });
-  } catch (err) {
-    res.status(500).json({ message: "Internal Error", error: err.message });
+  } catch (error) {
+    res.status(500).json({ message: "Internal Error", error: error.message });
   }
 }
 
