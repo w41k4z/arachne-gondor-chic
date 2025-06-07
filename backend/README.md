@@ -10,7 +10,7 @@ To run the project locally, follow these steps:
 
 4. Save the `.env` file. 💾
 
-5. do `npm run db:sync` to Sync the model in Database ,
+5. do `npm run db:migrate` to Migrate table in database,
    `npm run db:seed` to Insert default data. , `npm run db:cleardata` to clear all data
 
 6. Start the project by running the appropriate command `npm run dev`. ▶️
