@@ -7,17 +7,24 @@ const ProductPrice = sequelize.define('ProductPrice', {
     primaryKey: true,
     autoIncrement: true
   },
-  product_id: {
-    type: DataTypes.INTEGER,
+  date: {
+    type: DataTypes.DATE,
     allowNull: false
   },
-  date: {
-    type: DataTypes.DATEONLY,
-    allowNull: false
+  productId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    field: 'product_id'
   },
   price: {
     type: DataTypes.FLOAT,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      min: {
+        args: [0.01],
+        msg: 'Price must be greater than 0'
+      }
+    }
   }
 }, {
   tableName: 'product_prices',

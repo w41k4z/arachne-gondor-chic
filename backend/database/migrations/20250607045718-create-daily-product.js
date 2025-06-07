@@ -12,25 +12,17 @@ module.exports = {
       },
       date: {
         type: Sequelize.DATEONLY,
-        allowNull: false
+        allowNull: false,
+        unique: true
       },
-      productId: {
+      product_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: 'products',
           key: 'id'
         },
-        onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
-      },
-      createdAt: {
-        type: Sequelize.DATE,
-        allowNull: false
-      },
-      updatedAt: {
-        type: Sequelize.DATE,
-        allowNull: false
       }
     });
   },

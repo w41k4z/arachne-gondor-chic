@@ -9,11 +9,13 @@ const DailyProduct = sequelize.define('DailyProduct', {
   },
   date: {
     type: DataTypes.DATEONLY,
-    allowNull: false
+    allowNull: false,
+    unique: true
   },
-  product_id: {
+  productId: {
     type: DataTypes.INTEGER,
-    allowNull: false
+    allowNull: false,
+    field: 'product_id'
   }
 }, {
   tableName: 'daily_products',

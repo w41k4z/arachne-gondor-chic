@@ -10,33 +10,29 @@ module.exports = {
         autoIncrement: true,
         allowNull: false
       },
-      productId: {
+      date: {
+        type: Sequelize.DATE,
+        allowNull: false
+      },
+      product_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: 'products',
           key: 'id'
         },
-        onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
-      },
-      date: {
-        type: Sequelize.DATEONLY,
-        allowNull: false
       },
       price: {
         type: Sequelize.FLOAT,
         allowNull: false
-      },
-      createdAt: {
-        type: Sequelize.DATE,
-        allowNull: false
-      },
-      updatedAt: {
-        type: Sequelize.DATE,
-        allowNull: false
       }
     });
+
+    await queryInterface.sequelize.query(`
+      ALTER TABLE product_prices
+      ADD CONSTRAINT price_positive CHECK (price > 0)
+    `);
   },
 
   down: async (queryInterface, Sequelize) => {

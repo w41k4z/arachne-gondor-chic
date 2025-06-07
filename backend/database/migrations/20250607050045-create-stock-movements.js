@@ -10,14 +10,13 @@ module.exports = {
         autoIncrement: true,
         allowNull: false
       },
-      productId: {
+      product_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: 'products',
           key: 'id'
         },
-        onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
       },
       date: {
@@ -28,25 +27,23 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true
       },
-      quantityIn: {
+      quantity_in: {
         type: Sequelize.INTEGER,
         defaultValue: 0,
         allowNull: false
       },
-      quantityOut: {
+      quantity_out: {
         type: Sequelize.INTEGER,
         defaultValue: 0,
         allowNull: false
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
       }
     });
+
+    await queryInterface.sequelize.query(`
+      ALTER TABLE stock_movements
+      ADD CONSTRAINT quantity_in_non_negative CHECK (quantity_in >= 0),
+      ADD CONSTRAINT quantity_out_non_negative CHECK (quantity_out >= 0)
+    `);
   },
 
   down: async (queryInterface, Sequelize) => {

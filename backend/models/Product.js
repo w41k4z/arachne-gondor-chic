@@ -7,20 +7,24 @@ const Product = sequelize.define('Product', {
     primaryKey: true,
     autoIncrement: true
   },
-  category_id: {
+  categoryId: {
     type: DataTypes.INTEGER,
-    allowNull: false
+    allowNull: false,
+    field: 'category_id'
   },
   reference: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+    unique: true
   },
   label: {
     type: DataTypes.STRING,
     allowNull: false
   },
-  image_url: {
-    type: DataTypes.STRING
+  imageUrl: {
+    type: DataTypes.STRING,
+    allowNull: true,
+    field: 'image_url'
   }
 }, {
   tableName: 'products',

@@ -10,35 +10,27 @@ module.exports = {
         primaryKey: true,
         allowNull: false
       },
-      categoryId: {
+      category_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: 'categories',
           key: 'id'
         },
-        onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
       },
       reference: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
       },
       label: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      imageUrl: {
+      image_url: {
         type: Sequelize.STRING,
         allowNull: true
-      },
-      createdAt: {
-        type: Sequelize.DATE,
-        allowNull: false
-      },
-      updatedAt: {
-        type: Sequelize.DATE,
-        allowNull: false
       }
     });
   },
