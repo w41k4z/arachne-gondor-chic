@@ -33,6 +33,12 @@ module.exports = {
       ALTER TABLE product_prices
       ADD CONSTRAINT price_positive CHECK (price > 0)
     `);
+
+    await queryInterface.addConstraint('product_prices', {
+      fields: ['date', 'product_id', 'price'],
+      type: 'unique',
+      name: 'unique_price_per_product_per_day'
+    });
   },
 
   down: async (queryInterface, Sequelize) => {
