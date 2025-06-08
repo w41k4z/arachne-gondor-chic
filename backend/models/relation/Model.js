@@ -3,27 +3,22 @@ const Product = require('../Product');
 const DailyProduct = require('../DailyProduct');
 const StockMovement = require('../StockMovement');
 const ProductPrice = require('../ProductPrice');
+const User = require('../User');
 
-// Category -> Product
-Category.hasMany(Product, { foreignKey: 'category_id' });
-Product.belongsTo(Category, { foreignKey: 'category_id' });
+const ViewProduct = require('../view/ViewProduct');
 
-// Product -> DailyProduct
-Product.hasMany(DailyProduct, { foreignKey: 'product_id' });
-DailyProduct.belongsTo(Product, { foreignKey: 'product_id' });
+// ViewProduct -> Category 
+ViewProduct.belongsTo(Category, { foreignKey: 'categoryId', as: 'category' });
 
-// Product -> StockMovement
-Product.hasMany(StockMovement, { foreignKey: 'product_id' });
-StockMovement.belongsTo(Product, { foreignKey: 'product_id' });
-
-// Product -> ProductPrice
-Product.hasMany(ProductPrice, { foreignKey: 'product_id' });
-ProductPrice.belongsTo(Product, { foreignKey: 'product_id' });
+// DailyProduct -> ViewProduct
+DailyProduct.belongsTo(ViewProduct, { foreignKey: 'productId', as: 'product' });
 
 module.exports = {
   Category,
   Product,
   DailyProduct,
   StockMovement,
-  ProductPrice
+  ProductPrice,
+  User,
+  ViewProduct
 };
