@@ -1,59 +1,27 @@
 const {
   DailyProduct,
-  Product,
   Category,
-  StockMovement,
-  ProductPrice,
+  ViewProduct
 } = require("../../models/relation/Model");
 const { Op } = require("sequelize");
 
 async function getDailyProducts() {
   const today = new Date().toISOString().split("T")[0];
 
-  const dailyProducts = await DailyProduct.findAll({
+  return await DailyProduct.findAll({
     where: {
       date: { [Op.eq]: today },
     },
     include: [
       {
-        model: Product,
+        model: ViewProduct,
+        as: 'product',
         include: [
-          { model: Category },
-          {
-            model: StockMovement,
-            required: false,
-          },
-          { model: ProductPrice, required: false },
+          { model: Category, as: 'category' },
         ],
       },
     ],
   });
-
-  // Calcul du stock restant pour chaque produit
-  const result = dailyProducts.map((dailyProduct) => {
-    const product = dailyProduct.Product;
-    const stockMovements = product.StockMovements || [];
-
-    const totalIn = stockMovements.reduce(
-      (sum, m) => sum + (m.quantity_in || 0),
-      0
-    );
-    const totalOut = stockMovements.reduce(
-      (sum, m) => sum + (m.quantity_out || 0),
-      0
-    );
-    const stockRestant = totalIn - totalOut;
-
-    return {
-      ...dailyProduct.toJSON(),
-      Product: {
-        ...product.toJSON(),
-        stockRestant,
-      },
-    };
-  });
-
-  return result;
 }
 
 module.exports = {
