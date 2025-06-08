@@ -12,8 +12,7 @@ module.exports = {
       },
       date: {
         type: Sequelize.DATEONLY,
-        allowNull: false,
-        unique: true
+        allowNull: false
       },
       product_id: {
         type: Sequelize.INTEGER,
@@ -24,6 +23,12 @@ module.exports = {
         },
         onDelete: 'CASCADE'
       }
+    });
+
+    await queryInterface.addConstraint('daily_products', {
+      fields: ['date', 'product_id'],
+      type: 'unique',
+      name: 'unique_date_product'
     });
   },
 
