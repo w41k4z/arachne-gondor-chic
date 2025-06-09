@@ -2,8 +2,15 @@
 
 import React from "react";
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
+import { DailyProduct } from "@/types/models/DailyProduct";
 
-export function ThreeDCard() {
+type ThreeDCardProps = {
+  products: DailyProduct[];
+};
+
+export function ThreeDCard({ products }: ThreeDCardProps) {
+  const dailyProduct = products[0];
+
   return (
     <CardContainer className="inter-var">
       <CardBody className="bg-amber-100 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.2] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border  ">
@@ -31,7 +38,7 @@ export function ThreeDCard() {
             target="__blank"
             className="px-4 py-2 rounded-xl text-xl font-normal dark:text-white"
           >
-            Poudre magique
+            { dailyProduct.product.label }
           </CardItem>
           <CardItem
 
@@ -40,7 +47,7 @@ export function ThreeDCard() {
             target="__blank"
             className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
           >
-            200.000 Gondoariar
+            { dailyProduct.product.price } Gondoariar
           </CardItem>
           <CardItem
 
@@ -49,7 +56,7 @@ export function ThreeDCard() {
             target="__blank"
             className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
           >
-            8 en stock
+            { dailyProduct.product.quantity } en stock
           </CardItem>
         </div>
 
