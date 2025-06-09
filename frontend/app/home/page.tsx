@@ -34,7 +34,7 @@ const Accueil = () => {
                 {dailyProducts.length > 0 ? (
                     <ThreeDCard products={dailyProducts} />
                     ) : (
-                    <p className="text-red-600 italic mt-4">Aucun produit mis en avant aujourd’hui</p>
+                    <p className="text-red-600 italic my-5">Aucun produit mis en avant aujourd’hui</p>
                 )}
                 <p className='my-3'>"Marque ton nom, tiens ta clé, et marche dans l'ombre enchanté."</p>
                 <div className='flex flex-row items-end gap-5 w-50% justify-end mt-4'>
