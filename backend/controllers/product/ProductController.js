@@ -1,4 +1,4 @@
-const productService = require("../../services/product/ProductService");
+const productService = require("../../services/product/productServices/ProductManager");
 
 async function getDailyProducts(req, res) {
   try {
@@ -16,6 +16,7 @@ async function getDailyProducts(req, res) {
       error: {},
     });
   } catch (error) {
+    console.log(error)
     res.status(500).json({ message: "Internal Error", error: error.message });
   }
 }
