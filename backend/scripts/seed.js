@@ -1,6 +1,7 @@
 const {
   Category,
   Product,
+  Produit,
   DailyProduct,
   ProductPrice,
   StockMovement,
@@ -132,6 +133,43 @@ async function insertTestData() {
   } catch (error) {
     console.error("❌ Erreur :", error);
   }
+
+  // Seed produits
+  const produits = [
+      {
+        id: 'PROD-001',
+        reference: 'https://lotr.example.com/images/one_ring.jpg',
+        libelle: 'Anneau Unique',
+        estDuJour: false,
+        prix: 45,
+        quantiteEnStock: 23
+      },
+    {
+      id: 'PROD-002',
+      reference: 'https://lotr.example.com/images/anduril.jpg',
+      libelle: 'Andúril, Flamme de l’Ouest',
+      estDuJour: false,
+      prix: 86,
+      quantiteEnStock: 10
+    },
+    {
+      id: 'PROD-003',
+      reference: 'https://lotr.example.com/images/phial.jpg',
+      libelle: 'Fiole de Galadriel',
+      estDuJour: false,
+      prix: 29,
+      quantiteEnStock: 19
+    },
+    {
+      id: 'PROD-004',
+      reference: 'https://lotr.example.com/images/horn.jpg',
+      libelle: 'Corne de Gondor',
+      estDuJour: true,
+      prix: 54,
+      quantiteEnStock: 33
+    }
+  ];
+  const produitInstances = await Produit.bulkCreate(produits, { ignoreDuplicates: true });
 }
 
 insertTestData();
