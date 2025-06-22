@@ -5,7 +5,8 @@ const {
   DailyProduct,
   ProductPrice,
   StockMovement,
-  User
+  User,
+  Client
 } = require("../models/relation/Model");
 const bcrypt = require('bcryptjs');
 
@@ -129,13 +130,8 @@ async function insertTestData() {
       });
     }
 
-    console.log("✅ Seeding completed successfully!");
-  } catch (error) {
-    console.error("❌ Erreur :", error);
-  }
-
-  // Seed produits
-  const produits = [
+    // Seed produits
+    const produits = [
       {
         id: 'PROD-001',
         reference: 'https://lotr.example.com/images/one_ring.jpg',
@@ -144,32 +140,74 @@ async function insertTestData() {
         prix: 45,
         quantiteEnStock: 23
       },
-    {
-      id: 'PROD-002',
-      reference: 'https://lotr.example.com/images/anduril.jpg',
-      libelle: 'Andúril, Flamme de l’Ouest',
-      estDuJour: false,
-      prix: 86,
-      quantiteEnStock: 10
-    },
-    {
-      id: 'PROD-003',
-      reference: 'https://lotr.example.com/images/phial.jpg',
-      libelle: 'Fiole de Galadriel',
-      estDuJour: false,
-      prix: 29,
-      quantiteEnStock: 19
-    },
-    {
-      id: 'PROD-004',
-      reference: 'https://lotr.example.com/images/horn.jpg',
-      libelle: 'Corne de Gondor',
-      estDuJour: true,
-      prix: 54,
-      quantiteEnStock: 33
-    }
-  ];
-  const produitInstances = await Produit.bulkCreate(produits, { ignoreDuplicates: true });
+      {
+        id: 'PROD-002',
+        reference: 'https://lotr.example.com/images/anduril.jpg',
+        libelle: 'Andúril, Flamme de l’Ouest',
+        estDuJour: false,
+        prix: 86,
+        quantiteEnStock: 10
+      },
+      {
+        id: 'PROD-003',
+        reference: 'https://lotr.example.com/images/phial.jpg',
+        libelle: 'Fiole de Galadriel',
+        estDuJour: false,
+        prix: 29,
+        quantiteEnStock: 19
+      },
+      {
+        id: 'PROD-004',
+        reference: 'https://lotr.example.com/images/horn.jpg',
+        libelle: 'Corne de Gondor',
+        estDuJour: true,
+        prix: 54,
+        quantiteEnStock: 33
+      }
+    ];
+    const produitInstances = await Produit.bulkCreate(produits, { ignoreDuplicates: true });
+
+    // Seed Clients
+    const clients = [
+      {
+        id: 'CLI-001',
+        numero: '0320123456',
+        pseudo: 'frodo_f',
+        motDePasse: 'frodo_f',
+        nom: 'Baggins',
+        prenom: 'Frodo'
+      },
+      {
+        id: 'CLI-002',
+        numero: '0320789123',
+        pseudo: 'aragorn_a',
+        motDePasse: 'aragorn_a',
+        nom: 'Elessar',
+        prenom: 'Aragorn'
+      },
+      {
+        id: 'CLI-003',
+        numero: '0330192837',
+        pseudo: 'legolas_l',
+        motDePasse: 'legolas_l',
+        nom: 'Greenleaf',
+        prenom: 'Legolas'
+      },
+      {
+        id: 'CLI-004',
+        numero: '0340567890',
+        pseudo: 'gandalf_g',
+        motDePasse: 'gandalf_g',
+        nom: 'Mithrandir',
+        prenom: 'Gandalf'
+      }
+    ];
+    const clientInstances = await Client.bulkCreate(clients, { ignoreDuplicates: true });
+
+    console.log("✅ Seeding completed successfully!");
+  } catch (error) {
+    console.error("❌ Erreur :", error);
+  }
 }
 
 insertTestData();
