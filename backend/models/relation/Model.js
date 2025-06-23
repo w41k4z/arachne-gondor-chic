@@ -1,5 +1,6 @@
 const Category = require('../Category');
 const Product = require('../Product');
+const Produit = require('../Produit');
 const DailyProduct = require('../DailyProduct');
 const StockMovement = require('../StockMovement');
 const ProductPrice = require('../ProductPrice');
@@ -16,6 +17,7 @@ DailyProduct.belongsTo(ViewProduct, { foreignKey: 'productId', as: 'product' });
 module.exports = {
   Category,
   Product,
+  Produit,
   DailyProduct,
   StockMovement,
   ProductPrice,
