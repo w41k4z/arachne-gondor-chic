@@ -5,15 +5,9 @@ require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 5002;
-const sequelize = require('./config/db');
-
-// Test de connexkon à postgreSQL
-sequelize.authenticate()
-  .then(() => console.log('✅ Connexion à PostgreSQL réussie.'))
-  .catch(err => console.error('❌ Échec de la connexion à la BDD:', err));
 
 //Middleware pour paerser le JSON
-app.use(express.json({limit: '25mb'}));
+app.use(express.json());
 
 //Middleware pour paerser les cookies
 app.use(cookieParser());
@@ -29,14 +23,6 @@ app.use(
 
 //Routes to be used
 require("./routes/index")(app);
-
-// app.use(function (req, res, next) {
-//     res.header(
-//         "Access-Control-Allow-Headers", 
-//         "Authorization, Origin, Content-Type, Accept"
-//     );
-//     next();
-// });
 
 app.use((req, res, next) => {
   res.status(404).json({ message: "Route non trouvée" });
