@@ -1,9 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const {avoirClient} =  require('../../controllers/ControlleurClients')
+const {
+  avoirClient,
+  ajouterPanier,
+} = require("../../controllers/ControlleurClients");
 require("dotenv").config();
 
-router.post("/rechercherClientparPseudo" , avoirClient)
+router.post("/rechercherClientparPseudo", avoirClient);
+router.get("/ajouterPanier" , ajouterPanier);
 
 module.exports = function (app) {
   const apiVersion = process.env.API_VERSION || "v1";
