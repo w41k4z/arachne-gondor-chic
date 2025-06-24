@@ -2,58 +2,60 @@
 
 import React from "react";
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
+import Image from "next/image";
 
 export function ThreeDCard() {
   return (
     <CardContainer className="inter-var">
-      <CardBody className="bg-amber-100 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.2] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border  ">
+      <CardBody className="bg-gradient-to-br from-orange-200 via-amber-200 to-yellow-300 relative group/card hover:shadow-2xl hover:shadow-amber-500/[0.3] border-amber-400/[0.3] w-auto sm:w-[30rem] h-auto rounded-2xl p-6 border-2 shadow-lg">
         <CardItem
           translateZ="50"
-          className="text-xl text-center w-full font-bold text-neutral-600 dark:text-white"
+          className="text-2xl text-center w-full font-bold text-amber-900 font-serif"
+          style={{
+            textShadow: '1px 1px 2px rgba(139, 69, 19, 0.3)'
+          }}
         >
-          Produit du jour
+          🌟 Produit du jour 🌟
         </CardItem>
 
-        <CardItem translateZ="100" className="w-full mt-4">
-          <img
-            src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            height="1000"
-            width="1000"
-            className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
-            alt="thumbnail"
-          />
+        <CardItem translateZ="100" className="w-full mt-6 flex justify-center">
+          {/* Product Image */}
+          <div className="w-48 h-48 flex items-center justify-center">
+            <Image
+              src="/logo.webp"
+              alt="Poudre magique"
+              width={200}
+              height={200}
+              className="rounded-xl shadow-lg border-2 border-amber-400/30 object-cover"
+            />
+          </div>
         </CardItem>
-        <div className="flex flex-col gap-2">
+        
+        <div className="flex flex-col gap-3 mt-4">
           <CardItem
-
-            as="a"
-            href="https://twitter.com/mannupaaji"
-            target="__blank"
-            className="px-4 py-2 rounded-xl text-xl font-normal dark:text-white"
+            translateZ="20"
+            className="px-4 py-2 rounded-xl text-2xl font-bold text-amber-900 text-center font-serif"
+            style={{
+              textShadow: '1px 1px 2px rgba(139, 69, 19, 0.3)'
+            }}
           >
-            Poudre magique
+            ⚗️ Poudre magique ⚗️
           </CardItem>
+          
           <CardItem
-
-            as="a"
-            href="https://twitter.com/mannupaaji"
-            target="__blank"
-            className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
+            translateZ="20"
+            className="px-4 py-2 rounded-xl text-lg font-semibold text-amber-800 text-center font-serif"
           >
-            200.000 Gondoariar
+            💰 200,00 Gendarior 💰
           </CardItem>
+          
           <CardItem
-
-            as="a"
-            href="https://twitter.com/mannupaaji"
-            target="__blank"
-            className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
+            translateZ="20"
+            className="px-4 py-2 rounded-xl text-md font-medium text-amber-700 text-center font-serif"
           >
-            8 en stock
+            📦 8 en stock 📦
           </CardItem>
         </div>
-
-
       </CardBody>
     </CardContainer>
   );
