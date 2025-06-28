@@ -5,6 +5,7 @@ const DailyProduct = require('../DailyProduct');
 const StockMovement = require('../StockMovement');
 const ProductPrice = require('../ProductPrice');
 const User = require('../User');
+const Client = require('../Client');
 
 const ViewProduct = require('../view/ViewProduct');
 
@@ -38,5 +39,6 @@ module.exports = {
   StockMovement,
   ProductPrice,
   User,
-  ViewProduct
+  ViewProduct,
+  Client
 };
