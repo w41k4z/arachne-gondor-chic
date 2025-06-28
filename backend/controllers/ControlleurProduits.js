@@ -1,8 +1,8 @@
-const productService = require("../services/ProduitsServices/ProduitsManager");
+const produitService = require("../services/ProduitsServices/ProduitsManager");
 
 async function produitDuJour(req, res) {
   try {
-    const product = await productService.rechercherProduitDuJour();
+    const product = await produitService.rechercherProduitDuJour();
     if (!product) {
       return res.json({
         message: "Aucun produit mis en avant aujourd’hui",
