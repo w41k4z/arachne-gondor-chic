@@ -1,10 +1,10 @@
 import axios from '@/lib/axios';
 import { ApiResponse } from '../types/ApiResponse';
-import { DailyProduct } from '../types/models/DailyProduct';
+import { Produit } from '../types/models/Produit';
 
 class ProductService {
-  async getDailyProducts(): Promise<ApiResponse<DailyProduct[]>> {
-    const response = await axios.get<ApiResponse<DailyProduct[]>>('/daily-products');
+  async getDailyProduct(): Promise<ApiResponse<Produit>> {
+    const response = await axios.get<ApiResponse<Produit>>('/daily-products');
     return response.data;
   }
 }

@@ -3,23 +3,23 @@ import { ThreeDCard } from '@/components/reusable/3DProductCard'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { DailyProduct } from '@/types/models/DailyProduct'
+import { Produit } from '@/types/models/Produit'
 import { productService } from '@/services/ProductService';
 import { ApiResponse } from '@/types/ApiResponse'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 
 const Accueil = () => {
-    const [dailyProducts, setDailyProducts] = useState<DailyProduct[]>([]);
+    const [dailyProduct, setDailyProduct] = useState<Produit>();
 
     useEffect(() => {
         fetchDailyProducts();
     }, []);
 
     const fetchDailyProducts = async () => {
-      const response: ApiResponse<DailyProduct[]> = await productService.getDailyProducts();
-      if (response.payload && response.payload.length > 0) {
-        setDailyProducts(response.payload);
+      const response: ApiResponse<Produit> = await productService.getDailyProduct();
+      if (response.payload) {
+        setDailyProduct(response.payload);
       }
     };
 
@@ -31,8 +31,8 @@ const Accueil = () => {
                     <h1 className='text-4xl font-bold'>Gondor Chic</h1>
                 </div>
                 <h2 className='text-2xl'>🧙‍♂️ Bienvenue, noble voyageur ✨</h2>
-                {dailyProducts.length > 0 ? (
-                    <ThreeDCard products={dailyProducts} />
+                {dailyProduct ? (
+                    <ThreeDCard product={dailyProduct} />
                     ) : (
                     <p className="text-red-600 italic my-5">Aucun produit mis en avant aujourd’hui</p>
                 )}
