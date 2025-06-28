@@ -1,12 +1,9 @@
+const Produit = require('../../models/Produit');
+
 async function rechercherProduitDuJour() {
-  return {
-    id: '',
-    reference: '',
-    libelle: '',
-    estDuJour: false,
-    prix: 0,
-    quantiteEnStock: 0
-  }
+  return await Produit.findOne({
+    where: { estDuJour: true }
+  });
 }
 
 module.exports = {
