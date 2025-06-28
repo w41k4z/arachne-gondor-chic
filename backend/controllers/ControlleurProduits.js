@@ -1,18 +1,18 @@
-const productService = require("../../services/product/productServices/ProductManager");
+const productService = require("../services/ProduitsServices/ProduitsManager");
 
-async function getDailyProducts(req, res) {
+async function produitDuJour(req, res) {
   try {
-    const products = await productService.getDailyProducts();
-    if (products.length === 0) {
+    const product = await productService.rechercherProduitDuJour();
+    if (!product) {
       return res.json({
         message: "Aucun produit mis en avant aujourd’hui",
-        payload: products,
+        payload: product,
         error: {},
       });
     }
     return res.json({
       message: "",
-      payload: products,
+      payload: product,
       error: {},
     });
   } catch (error) {
@@ -22,5 +22,5 @@ async function getDailyProducts(req, res) {
 }
 
 module.exports = {
-  getDailyProducts,
+  produitDuJour,
 };
