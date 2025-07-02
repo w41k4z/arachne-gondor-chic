@@ -1,4 +1,26 @@
 const clientManager = require("../services/clientsServices/clientsManager");
+const produitService = require("../services/ProduitsServices/ProduitsManager");
+
+async function leProduitCourant(req, res) {
+  try {
+    const product = await produitService.rechercherProduitDuJour();
+    if (!product) {
+      return res.json({
+        message: "Aucun produit mis en avant aujourd’hui",
+        payload: product,
+        error: {},
+      });
+    }
+    return res.json({
+      message: "",
+      payload: product,
+      error: {},
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Internal Error", error: error.message });
+  }
+}
 
 async function ajouterPanier(req, res) {
   const { idClient, idProduit, quantite } = req.query;
@@ -18,7 +40,7 @@ async function ajouterPanier(req, res) {
   }
 }
 
-async function avoirClient(req, res) {
+async function leClientIdentifie(req, res) {
   const { pseudo, motDePasse } = req.body;
   try {
     const reponse = await clientManager.rechercherClientparPseudo(
@@ -42,4 +64,4 @@ async function avoirClient(req, res) {
   }
 }
 
-module.exports = { avoirClient, ajouterPanier };
+module.exports = { leClientIdentifie, ajouterPanier, leProduitCourant };

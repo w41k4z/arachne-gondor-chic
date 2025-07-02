@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const {
-  avoirClient,
+  leClientIdentifie,
   ajouterPanier,
-} = require("../../controllers/ControlleurClients");
+} = require("../../controllers/SessionPasserCde");
 require("dotenv").config();
 
-router.post("/rechercherClientparPseudo", avoirClient);
+router.post("/rechercherClientparPseudo", leClientIdentifie);
 router.get("/ajouterPanier" , ajouterPanier);
 
 module.exports = function (app) {
