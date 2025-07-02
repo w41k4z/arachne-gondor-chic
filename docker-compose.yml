@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  gondor-chic-database:
+    image: postgres:15
+    container_name: gondor-chic-database
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: gondor_chic_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - gondor-chic-net
+
+  gondor-chic-server:
+    build: ./backend
+    container_name: gondor-chic-server
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@gondor-chic-database:5432/gondor_chic_db
+      PORT: 3000
+    depends_on:
+      - gondor-chic-database
+    ports:
+      - "3000:3000"
+    networks:
+      - gondor-chic-net
+
+  gondor-chic-client:
+    build: ./frontend
+    container_name: gondor-chic-client
+    ports:
+      - "3000:3000"
+    depends_on:
+      - gondor-chic-server
+    networks:
+      - gondor-chic-net
+
+volumes:
+  postgres_data:
+
+networks:
+  gondor-chic-net:
